@@ -6,16 +6,19 @@ mongoose.connect('mongodb://localhost/bears', { useNewUrlParser: true })
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
 //Message Object Schema (a sub document of the group message schema)
-const messageObjectSchema = mongoose.Schema({
+const messageObjectSchema = new mongoose.Schema({
+  //Message Content
   content:{
     type: String,
     required: true,
     minlength: 1
   },
+  //Sender
   author: {
     type: String,
     required: true
   },
+  //Time the message was logged
   date: {
     type: Date,
     default: Date.now()
@@ -23,17 +26,22 @@ const messageObjectSchema = mongoose.Schema({
 });
 
 //Group-Message Schema
-const groupMessageSchema = mongoose.Schema({
+const groupMessageSchema = new mongoose.Schema({
+  //Unique group ID
   groupId: {
     type: String,
     required: true
   },
+  //Unique group name
   groupName: {
     type: String,
     required: true
   },
+  //Array containing group messages
   groupMessage: [messageObjectSchema]
 });
 
+//Group Message model
+const GroupMessage = mongoose.model('GroupMessage', groupMessageSchema);
 
-module.exports = groupMessageSchema;
+module.exports = GroupMessage;
