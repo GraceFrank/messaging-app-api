@@ -1,0 +1,29 @@
+{
+  "name": "messaging-app-api",
+  "version": "1.0.0",
+  "description": "a simple api for a messaging app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GraceFrank/messaging-app-api.git"
+  },
+  "keywords": [
+    "messaging",
+    "api",
+    "simple"
+  ],
+  "author": "DecaDev SQ001",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GraceFrank/messaging-app-api/issues"
+  },
+  "homepage": "https://github.com/GraceFrank/messaging-app-api#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "mongoose": "^5.4.19"
+  }
+}
