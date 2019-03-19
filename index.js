@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const user = require('./routes/user-route');
 
 
 //app use
 app.use(express.json())
-
+app.use('/mapp', user)
 
 
 
