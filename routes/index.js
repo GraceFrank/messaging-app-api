@@ -13,7 +13,9 @@ const router = express.Router();
 
 //Connect to data base
 
-mongoose.connect('mongodb://localhost/messaging_api', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/messaging_api', {useNewUrlParser: true})
+  .then(()=> console.log(`Conneted to the Database...`))
+  .catch((err) => console.log(err));
 
 
 
