@@ -32,11 +32,8 @@ const groupMessageSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  groupMessage: {
-    type: Object,
-    required: true
-  }
+  groupMessage: [messageObjectSchema]
 });
 
 
-module.exports = GroupMessage;
+module.exports = groupMessageSchema;
