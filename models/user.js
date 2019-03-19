@@ -1,39 +1,41 @@
 //Schema for User
 const mongoose = require('mongoose');
 
-//Connect to data base
+//Connect to data base or Create if not existing
 mongoose.connect('mongodb://localhost/users', { useNewUrlParser: true })
   .then(() => console.log(`Conneted to the Database...`))
   .catch((err) => console.log(err));
 
-const userSchema = new mongoose.Schema({
-	name: {
+const userSchema = new mongoose.Schema({//Define User Schema
+	name: {//Name of type String
 		type: String,
 		required: true,
 	},
-	password: {
+	password: {//Password of type String and minimum length of 6
 		type: String,
 		required: true,
 		minlength: 6,
 	},
-	email: {
+	email: {//email of type string
 		type: String,
 		required: true,
 	},
-	private_chat: {
-		type: Object,
+	privateChat: {//privateChat will hold email of friend as key and id of message 
+    type: Map,
+    of: String,
+		default: {},//
+	},
+	groupChat: {//groupChat will hold name of group as key and id of message as value
+    type: Map,
+    of: String,
 		default: {},
 	},
-	group_chat: {
-		type: Object,
-		default: {},
-	},
-	friend_list: {
+	friendList: { //holds emails of friend
 		type: [ String ],
 		default: [],
 	},
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);//convert Schema to model
 
 module.exports = User;
