@@ -1,39 +1,39 @@
 //Importing user model
-let users = require("../models/user");
+let Users = require("../models/user");
 
-
-//Controller to handle add friend
+//Controller to handle adding a friend to your friend list
 exports.addFriend = (req, res) => {
-  const id = parseInt(req.params.userId);
+  const id = req.params.userId;
   const email = req.body.email;
 
-  //Check if friend exist in the database
-  users.find({}).exec((err, user) => {
+  //Get user by ID
+  Users.findOne({ _id: id }, (err, user) => {
     if (err) {
-        res.status(404).send("user doesn't exist");
+      res.send(err);
     }
 
-    for (let i = 0; i < user[0].friendList.length; i++) {
-        if (user[0].friendList[i] === email) {
-            return res.status(400).send(`Email already in use`);
-        }
+    //Check if friend is already in the friend list
+    for (let i = 0; i < user.friendList.length; i++) {
+      if (user.friendList[i] === email) {
+        return res.status(404).send("Already in your friend list");
+      }
     }
 
-    //find user and update friend list
-    users.findOneAndUpdate(
-            id,
-            { $push: { friendList: email } },
-            { safe: true, upsert: true, new: true },
-        
-            function(err, model) {
-              if (err) {
-                console.log("Error: ", err);
-                res.status(500).send(err);
-              } else {
-                res.status(200).send(model.friendList);
-              }
-            }
-          );
-    
-  })  
+    updateFriendList(res, id, email);
+  });
+};
+
+//Add friend 
+let updateFriendList = (res, id, email) => {
+  Users.findByIdAndUpdate(
+    id,
+    { $push: { friendList: email } },
+    { new: true, upsert: true },
+    (err, user) => {
+      if (err) {
+        res.status(404).send("Could update friend list");
+      }
+      res.status(200).send(user);
+    }
+  );
 };
