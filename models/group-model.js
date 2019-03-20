@@ -25,8 +25,8 @@ const messageObjectSchema = new mongoose.Schema({
   }
 });
 
-//Group-Message Schema
-const groupMessageSchema = new mongoose.Schema({
+//Group Schema
+const groupSchema = new mongoose.Schema({
   //Unique group ID
   groupId: {
     type: String,
@@ -42,6 +42,6 @@ const groupMessageSchema = new mongoose.Schema({
 });
 
 //Group Message model
-const GroupMessage = mongoose.model('GroupMessage', groupMessageSchema);
+const Group = mongoose.model('GroupMessage', groupSchema);
 
-module.exports = GroupMessage;
+module.exports = Group;

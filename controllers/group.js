@@ -1,4 +1,4 @@
-const Group = require('../models/group-message');
+const Group = require('../models/group-model');
 const validateGroup = require('../auth/group-auth');
 
 const group = async (req, res) => {
