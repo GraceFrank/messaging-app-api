@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //Database connection
-mongoose.connect('mongodb://localhost/bears', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/group', { useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
@@ -25,8 +25,8 @@ const messageObjectSchema = new mongoose.Schema({
   }
 });
 
-//Group-Message Schema
-const groupMessageSchema = new mongoose.Schema({
+//Group Schema
+const groupSchema = new mongoose.Schema({
   //Unique group ID
   groupId: {
     type: String,
@@ -42,6 +42,6 @@ const groupMessageSchema = new mongoose.Schema({
 });
 
 //Group Message model
-const GroupMessage = mongoose.model('GroupMessage', groupMessageSchema);
+const Group = mongoose.model('GroupMessage', groupSchema);
 
-module.exports = GroupMessage;
+module.exports = Group;

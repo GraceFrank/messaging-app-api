@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const userRoutes = require('./routes/user-route');
+const group = require('./routes/group-route');
+const userSignup = require('./routes/user-route');
 
 
 //app use
@@ -9,6 +11,11 @@ app.use(express.json());
 
 //push any 
 app.use('/api/users', userRoutes);
+app.use('/api/users/group', group);
+app.use('/', userSignup);
+
+
+
 
 
 
@@ -19,5 +26,5 @@ app.use('/api/users', userRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+	console.log(`Listening on port ${port}`);
 });
