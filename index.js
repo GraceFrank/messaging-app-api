@@ -7,7 +7,7 @@ const group = require('./routes/group-route');
 app.use(express.json())
 
 //router Middleware
-app.use('/api/group', group);
+app.use('/api/users/group', group);
 
 
 
