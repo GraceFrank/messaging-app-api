@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const group = require('./routes/group-route');
 
 
 //app use
 app.use(express.json())
 
+//router Middleware
+app.use('/api/group', group);
 
 
 
