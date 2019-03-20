@@ -1,8 +1,9 @@
 const express = require('express');
-const userController = require('../controllers/index')
+const userController = require('../controllers/add-friend')
 
 const router = express.Router();
 
-router.post('/api/users/:userId/addFriend', userController.addFriend);
+router.put('/:userId/addFriend', userController.addFriend);
 
 module.exports = router;
+

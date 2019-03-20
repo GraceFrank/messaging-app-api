@@ -7,7 +7,8 @@ const userRoutes = require('./routes/user-route');
 app.use(express.json());
 
 
-app.use('/users', userRoutes);
+//push any 
+app.use('/api/users', userRoutes);
 
 
 
