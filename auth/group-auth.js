@@ -16,3 +16,5 @@ function validatesGroup(group) {
   return Joi.validate(group, schema);
 
 }
+
+module.exports = validatesGroup;
