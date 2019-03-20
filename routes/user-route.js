@@ -8,6 +8,6 @@ const signup = require('../controllers/signup');
 
 
 //Router for signup
-router.post('/api/users/signup', signup);
+router.post('/signup', signup);
 
 module.exports = router;
