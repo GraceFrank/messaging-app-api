@@ -1,34 +1,37 @@
 const mongoose = require('mongoose');
 
 //Database connection
-mongoose.connect('mongodb://localhost/group', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/groups', {
+    useNewUrlParser: true
+  })
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
 //Message Object Schema (a sub document of the group message schema)
 const messageObjectSchema = new mongoose.Schema({
   //Message Content
-  content:{
+  content: {
     type: String,
     required: true,
-    minlength: 1
+    minlength: 1,
+    default: []
   },
   //Sender
-  author: {
+  sender: {
     type: String,
-    required: true
+    required: true,
+    default: []
   },
   //Time the message was logged
   date: {
-    type: Date,
-    default: Date.now()
+    type: Date
   }
 });
 
 //Group Schema
 const groupSchema = new mongoose.Schema({
   //Unique group ID
-  groupId: {
+  authorId: {
     type: String,
     required: true
   },
@@ -38,10 +41,15 @@ const groupSchema = new mongoose.Schema({
     required: true
   },
   //Array containing group messages
-  groupMessage: [messageObjectSchema]
+  groupMessage: {
+    type: [messageObjectSchema],
+    default: []
+  }
 });
 
-//Group Message model
-const Group = mongoose.model('GroupMessage', groupSchema);
+//Group model
+const Group = mongoose.model('Group', groupSchema);
 
-module.exports = Group;
+const GroupMessage = mongoose.model('GroupMessage', messageObjectSchema);
+
+module.exports = { Group, GroupMessage };
