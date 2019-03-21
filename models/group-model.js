@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //Database connection
-mongoose.connect('mongodb://localhost/groups', {
+mongoose.connect('mongodb://localhost/message-app', {
     useNewUrlParser: true
   })
   .then(() => console.log('Connected to MongoDB...'))
