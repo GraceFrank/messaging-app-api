@@ -2,7 +2,9 @@
 const mongoose = require('mongoose');
 
 //Connect to data base or Create if not existing
-mongoose.connect('mongodb://localhost/users', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/message-app', {
+	useNewUrlParser: true
+})
   .then(() => console.log(`Conneted to the Database...`))
   .catch((err) => console.log(err));
 
