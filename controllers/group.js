@@ -1,4 +1,4 @@
-const Group = require('../models/group-model');
+const {Group} = require('../models/group-model');
 const validateGroup = require('../auth/group-auth');
 
 //group handler
@@ -11,7 +11,6 @@ group.post = async (req, res) => {
     const { error } = validateGroup(req.body);
     //access the error message based on Joi error object
     if (error) return res.status(404).send(error.details[0].message);
-    console.log('done');
 
     //takes in the required parameter
     const group = new Group({
@@ -19,7 +18,6 @@ group.post = async (req, res) => {
       groupName: req.body.groupName,
       groupMessage: []
     });
-    console.log('done');
     //save the group to the database
     await group.save();
     res.send(group);
