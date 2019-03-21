@@ -9,6 +9,7 @@ app.use(express.json())
 //router Middleware
 app.use('/api/users/group', group);
 app.use('/api/users', userSignup);
+app.use('/api/users',login);
 
 
 //Create and Run the port
